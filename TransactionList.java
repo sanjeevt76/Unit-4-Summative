@@ -23,6 +23,16 @@ public class TransactionList {
 		this.list = new TransactionRecord[maxSize];
 		this.file = new File("transactions.txt");
 	}
+	
+	private TransactionRecord [] getList (){
+		return this.list;
+	}
+	
+	// method to get size
+	private int getSize(){
+		return this.size;
+	}
+	
 	// method that inserts a new transaction to the list
 	public boolean insert(TransactionRecord record) {
 		if (size < maxSize) {
@@ -32,6 +42,28 @@ public class TransactionList {
 		}
 		return false;
 	}
+	
+	public boolean delete(TransactionRecord record){
+		for (int where = 0; where < size; where++){
+			if (list[where].getStudentName().equalsIgnoreCase(record.getStudentName())){
+				list[where] = list[size-1]; // puts last one in my spot
+				size--;   // decrease size of list
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
+	public boolean change (TransactionRecord record, int index){
+		if (index < maxSize){
+			list[index] = record;
+			return true;
+		}
+		return false;
+	}
+	
+	
 	public void saveListToFile() throws IOException{
 		TransactionRecord record;
 		String output = "";

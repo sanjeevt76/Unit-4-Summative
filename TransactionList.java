@@ -45,7 +45,7 @@ public class TransactionList {
 	
 	public boolean delete(TransactionRecord record){
 		for (int where = 0; where < size; where++){
-			if (list[where].getStudentName().equalsIgnoreCase(record.getStudentName())){
+			if (list[where].getTransactionType().equalsIgnoreCase(record.getTransactionType())){
 				list[where] = list[size-1]; // puts last one in my spot
 				size--;   // decrease size of list
 				return true;
@@ -63,6 +63,25 @@ public class TransactionList {
 		return false;
 	}
 	
+	public int binarySearch (String searchKey){
+		int low = 0;
+		int high = size -1;
+		int middle;
+		
+		while (low <= high){
+			middle = (high + low)/2;
+			if (searchKey.equalsIgnoreCase(list[middle].getTransactionType())){
+				return middle;  // element was found
+			}
+			else if(searchKey.compareToIgnoreCase(list[middle].getTransactionType())<0){
+				high = middle -1;
+			}
+			else {
+				low = middle + 1;
+			}
+		}
+		return -1;  // element was not found
+	}
 	
 	public void saveListToFile() throws IOException{
 		TransactionRecord record;
@@ -94,6 +113,9 @@ public class TransactionList {
 		info.setEndAmount(375.50);
 		
 		transactionList.insert(info);
+		transactionList.delete(record);
+		transactionList.change(record, index);
+		transactionList.binarySearch(searchKey);
 		transactionList.saveListToFile();
 	}
 

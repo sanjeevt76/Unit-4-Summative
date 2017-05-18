@@ -23,7 +23,7 @@ import java.io.IOException;
  */
  
 
-public class TransactionList {
+public class TransactionList2 {
 	// declares a variable
 	private TransactionRecord list[];
 	private int maxSize;
@@ -36,7 +36,7 @@ public class TransactionList {
 	//private File file;
 
 	//constructor
-	public TransactionList() {
+	public TransactionList2() {
 		this.maxSize = 20;
 		this.size = 0;
 		this.list = new TransactionRecord[maxSize];
@@ -168,13 +168,13 @@ public class TransactionList {
 		// TODO Auto-generated method stub
 
 		TransactionRecord info = null;
-		TransactionList transactionList = new TransactionList();
+		TransactionList2 transactionList = new TransactionList2();
 
 		String transType = "Deposit";
 		char accType = 's';
 		double amount = 1000;
 		
-		for (int i=1; i<=20; i++) {
+		for (int i=0; i<=9; i++) {
 			if (i % 3 == 0) {
 				transType = "Withdraw";
 			}
